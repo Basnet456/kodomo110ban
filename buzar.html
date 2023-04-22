@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="buzar.css" />
+  </head>
+
+  <body>
+    <h1>ぼうはんぶざー</h1>
+    <button class="btn" onclick="audio()" id="button_image"></button>
+    <p>ぼたんをおしたら<br />ぶざーがなります</p>
+    <audio id="btn_audio" loop>
+      <source src="./audio/防犯ブザー.mp3" type="audio/mp3" />
+    </audio>
+    <footer>
+      <div id="fixed-footer-menu">
+        <ul>
+          <a href="./CameraOn.html">
+            <img src="./img/カメラ.png" class="img" />
+            <h1 id="screen_name">110ばんのいえとうろく</h1>
+          </a>
+          <a href="./main.html">
+            <img src="./img/地図.png" class="img" />
+            <h1 id="screen_name">ちずがめん</h1>
+          </a>
+          <a href="./Rooting.html">
+            <img src="./img/経路.png" class="img" />
+            <h1 id="screen_name">みちあんない</h1>
+          </a>
+          <a href="./buzar.html">
+            <img src="./img/ブザー.png" class="img" />
+            <h1 id="screen_name">ぼうはんぶざー</h1>
+          </a>
+        </ul>
+      </div>
+    </footer>
+    <script src="./buzar.js"></script>
+  </body>
+</html>

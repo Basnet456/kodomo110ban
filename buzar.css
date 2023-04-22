@@ -1,0 +1,102 @@
+p {
+  color: yellow;
+  font-size: 100px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+  h1 {
+    color: yellow;
+    font-size: 130px;
+    text-align: center;
+    padding-top: 0%;
+    margin-top: 0%;
+  }
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: 800px;
+  height: 700px;
+  background-color: black;
+  text-decoration: none;
+  text-align: center;
+  margin-left: 100px;
+  border-style: none; /*ボタンの画像の周りに枠があったから消すやつ*/
+}
+ul {
+  display: flex;
+}
+a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  margin-right: 35px;
+  font-size: 50px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+
+#fixed-footer-menu {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  opacity: 1;
+  z-index: 100;
+}
+
+/* メニューを横並びにする */
+#fixed-footer-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 50;
+  margin: 0;
+  width: 300%;
+  background: skyblue;
+}
+
+/* メニューの要素 */
+#fixed-footer-menu li {
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* メニューのボタン */
+#fixed-footer-menu li a {
+  color: #333;
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-size: 8px;
+  text-decoration: none;
+}
+
+/* アイコンのサイズを調整 */
+.img {
+  width: 200px;
+  height: 150px;
+  margin: 0px;
+}
+
+/*ナビゲーションバーの文字設定*/
+#screen_name {
+  font-size: 21px;
+  text-align: center;
+  color: black;
+}
+/*画像を押したらon offかわる*/
+#button_image {
+  background-image: url(./img/OFF.png);
+}
+#button_image.ON {
+  background-image: url(img/ON.png);
+}

@@ -1,0 +1,56 @@
+svg {
+  text-align: center;
+}
+
+body {
+  background-image: url(./png/hagakisize_tate_sora4.png);
+  background-size: auto;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-size: 77em;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#home {
+  padding-bottom: 0%;
+  vertical-align: bottom;
+}
+
+.btn {
+  position: absolute;
+  display: inline-block;
+  border-radius: 20%;
+  /* 角丸       */
+  font-size: 90pt;
+  /* 文字サイズ */
+  text-align: center;
+  /* 文字位置   */
+  cursor: pointer;
+  /* カーソル   */
+  padding: 12px 12px;
+  /* 余白       */
+  background: #e83929;
+  /* 背景色     */
+  color: #ffffff;
+  /* 文字色     */
+  line-height: 1em;
+  /* 1行の高さ  */
+  transition: 0.3s;
+  /* なめらか変化 */
+  top: 34%;
+  left: 23%;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.imgbox {
+  position: relative;
+}
+
+#shibahu {
+  width: 100%;
+  padding-bottom: 0%;
+  vertical-align: bottom;
+}

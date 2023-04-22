@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>WebCamera</title>
+    <link rel="stylesheet" href="Camera.css">
+</head>
+
+<body>
+    <video id="video" autoplay playsinline with="1000px" height="2000px" ></video>
+    <div>
+        <!-- <script>
+            window.onload = function () {
+                let hangoutButton = document.getElementById("eventButton");
+                hangoutButton.click();
+            };
+        </script> -->
+        
+        <div id="label-container">-</div>
+    </div>
+    <div>
+        <canvas class="wrapper" id="canvas" width="1000px" height="1000px"visibility: hidden;></canvas>
+    </div>
+    <button id="eventButton" class="camerabtn" type="button" onclick="init()"><img src="./png/CAMERA.png" id="camera_btn"></button>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+    let medias;
+    //カメラの設定をmediasに格納、※environmentでリアカメラを設定
+    medias = {
+        audio: false,
+        video: {
+            facingMode: {
+                exact: "environment"
+            }
+        }
+    };
+    //Canvasをフルスクリーンにする
+    var w = $('.wrapper').width();
+    var h = $('.wrapper').height();
+    $('#canvas').attr('width', w);
+    $('#canvas').attr('height', h);
+    //DOMに要素追加
+    //カメラ映像を出すvideoタグを取得する
+    const video = document.getElementById("video");
+    //設定したカメラのセッティングで起動する変数promiseを設定
+    const promise = navigator.mediaDevices.getUserMedia(medias);
+
+    //カメラの起動許可を確認
+    promise.then(successCallback)
+        .catch(errorCallback);
+    //許可が取れるとコールバックしてvideoタグにカメラ映像を写す
+    function successCallback(stream) {
+        video.srcObject = stream;
+    };
+    //取れない場合はエラーメッセージを出す
+    function errorCallback(err) {
+        alert(err);
+    };
+
+    //googleのteachablemachineを使用して画像解析をする
+    const URL = "https://teachablemachine.withgoogle.com/models/bLLaBdr8i/";
+
+    let model, labelContainer, maxPredictions;
+
+    // initボタンを押すと画像解析をスタートする、コードの中でawaitを使うためasync functionが必要
+    async function init() {
+
+        //teachablemachineのモデルURLを読み込む
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        //モデルのイメージを格納する
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        //結果を出す為のlavelcontainerをDOMに要素追加する
+        labelContainer = document.getElementById("label-container");
+        window.requestAnimationFrame(loop);
+    }
+
+    async function loop() {
+        //canvasに静止画を入れる
+        var canvas = document.getElementById("canvas")
+        canvas.getContext("2d").drawImage(video, 0, 0, 300, 400)
+
+        //予測は、画像、ビデオ、またはキャンバスのhtml要素を取り込むことができます
+        const prediction = await model.predict(canvas);
+        
+        console.log(prediction);
+
+        //predictionの数値によって結果を変える
+        if (prediction[0].probability.toFixed(2) > 0.0) {
+            console.log("まだできてない");
+            labelContainer.innerHTML = "まだ";
+        }
+        if (prediction[0].probability.toFixed(2) > 0.5) {
+            console.log("もう少し");
+            labelContainer.innerHTML = "カメラにかんばんをいれてね";
+        }
+       if (prediction[0].probability.toFixed(2) > 0.8) {
+        window.location.href = "./seiko.html"
+            //上はマップ一覧画面に遷移してピンをひょうじするようにする
+        }
+        //処理を継続させるためloopをさせる
+        window.requestAnimationFrame(loop);
+    }
+</script>
